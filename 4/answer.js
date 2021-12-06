@@ -83,6 +83,9 @@ const checkList = (input, bingo) => {
   return input.every(elem => bingo.includes(elem))
 };
 
+// marker for whether we have found a match for the array
+const matrixMarker = new Array(allMatrix.length).fill(false);
+console.log(matrixMarker)
 
 // loop from 4 as we need min 5 numbers before match.
 for (let i=4; i < draw.length; i++) {
@@ -100,6 +103,14 @@ for (let i=4; i < draw.length; i++) {
       console.log(missed)
       
       console.log(search[search.length-1])
+      // process.exit(0)
+      matrixMarker[j] = true;
+      console.log(matrixMarker)
+    }
+    console.log('number of false')
+    console.log([...matrixMarker].filter(x => x === false).length )
+    if ([...matrixMarker].filter(x => x === false).length === 0) {
+      console.log('down to 0')
       process.exit(0)
     }
   }
